@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock title %}</title>
+    <title>{% block title %}{% endblock title %} | Кабинет сотрудника</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='sidebars.css') }}">
 </head>
@@ -19,13 +19,13 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a href="#" class="nav-link active" aria-current="page">
+        <a href="{{url_for('main.index')}}" class="nav-link text-white {% block  main_active %}{% endblock main_active %}" aria-current="page">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
           Главное
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link text-white">
+        <a href="{{url_for('salary.index')}}" class="nav-link text-white {% block salary_active %}{% endblock salary_active %}">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
           Зарплата
         </a>
