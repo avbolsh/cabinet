@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма входа | Кабинет сотрудника</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+</head>
+
+<body>
+    <div class="container p-5">
+        {% include '_messages.html' %}
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <form method="post" novalidate>
+                    {{form.hidden_tag()}}
+                    <div class="mb-3">
+                        <!--<img src="{{ url_for('static', filename='logo.png') }}" alt="logo">-->
+                        <h1>Кабинет сотрудника</h1>
+                    </div>
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" name="username">
+                         {% for error in form.username.errors %}<span style="color: red;">[{{ error }}]</span>{% endfor %}
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password">
+                         {% for error in form.password.errors %}<span style="color: red;">[{{ error }}]</span>{% endfor %}
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="remember_me">
+                        <label class="form-check-label" for="remember_me">Remember Me</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="sign_in">Sign in</button>
+                </form>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+</body>
+
+</html>
