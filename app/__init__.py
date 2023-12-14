@@ -3,6 +3,7 @@ from flask import Flask
 from config import Config
 from app.extensions import db, migrate, login, admin
 from app.models.user import User
+from app.models.ticket import Ticket
 
 def create_app(config_class=Config):
     app = Flask(__name__)

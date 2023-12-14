@@ -16,6 +16,7 @@ class User(UserMixin, db.Model):
     first_name = Column(String(50))
     last_name = Column(String(50))
     surname = Column(String(50))
+    tickets = db.relationship("Ticket", backref="author", lazy="dynamic")
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
