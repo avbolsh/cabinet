@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
@@ -14,27 +14,27 @@
         <div class="row">
             <div class="col"></div>
             <div class="col">
-                <form method="post" novalidate>
+                <form method="post">
                     {{form.hidden_tag()}}
                     <div class="mb-3">
                         <!--<img src="{{ url_for('static', filename='logo.png') }}" alt="logo">-->
                         <h1>Кабинет сотрудника</h1>
                     </div>
                     <div class="mb-3">
-                        <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" name="username">
-                         {% for error in form.username.errors %}<span style="color: red;">[{{ error }}]</span>{% endfor %}
+                        <label for="snils" class="form-label">Страховой номер</label>
+                        <input type="text" class="form-control" id="snils" name="snils" data-mdb-input-mask="999-999-999 99">
+                         {% for error in form.snils.errors %}<span style="color: red;">[{{ error }}]</span>{% endfor %}
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
+                        <label for="password" class="form-label">Пароль</label>
                         <input type="password" class="form-control" id="password" name="password">
                          {% for error in form.password.errors %}<span style="color: red;">[{{ error }}]</span>{% endfor %}
                     </div>
                     <div class="mb-3 form-check">
                         <input type="checkbox" class="form-check-input" id="remember_me">
-                        <label class="form-check-label" for="remember_me">Remember Me</label>
+                        <label class="form-check-label" for="remember_me">Запомнить меня</label>
                     </div>
-                    <button type="submit" class="btn btn-primary" id="sign_in">Sign in</button>
+                    <button type="submit" class="btn btn-primary" id="sign_in">Войти</button>
                 </form>
             </div>
             <div class="col"></div>
