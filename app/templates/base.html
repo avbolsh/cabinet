@@ -130,7 +130,9 @@
           data-bs-toggle="dropdown" aria-expanded="false">
           <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
           <strong>
-              {{current_user.fullname}}
+              {% if not current_user.is_anonymous %}
+                {{current_user.fullname}}
+              {% endif %}
           </strong>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
@@ -138,16 +140,15 @@
           <li>
             <hr class="dropdown-divider">
           </li>
-          <li><a class="dropdown-item" href="#">Sign out</a></li>
         </ul>
       </div>
     </div>
 
+  {% block content %}{% endblock content %}
     <div class="b-example-vr"></div>
   </main>
 
 
-  {% block content %}{% endblock content %}
   {% include '_messages.html' %}
   <script src="{{url_for('static', filename='bootstrap.bundle.min.js')}}"></script>
   <script src="{{url_for('static', filename='sidebars.js')}}"></script>

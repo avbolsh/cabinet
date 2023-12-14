@@ -1,8 +1,9 @@
 from flask import render_template, redirect, flash, url_for
 from app.auth import bp
 from .forms import LoginForm
-from flask_login import current_user, login_user, logout_user
+from flask_login import current_user, login_user, logout_user, login_required
 from app.models.user import User
+from app import login as login_namager
 
 
 @bp.route("/login/", methods=["GET", "POST"])
@@ -29,3 +30,15 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for("auth.login"))
+
+
+@login_namager.unauthorized_handler
+def unauthorized_callback():
+    return redirect(url_for("auth.login"))
+
+
+@bp.route("/profile/<snils>")
+@login_required
+def user(snils):
+    user = User.query.filter_by(snils=snils).first_or_404()
+    return render_template("auth/profile.html", user=user)
