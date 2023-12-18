@@ -88,7 +88,7 @@
 </head>
 
 <body>
-  <main class="d-flex flex-nowrap">
+  <main class="d-flex flex-nowrap" style="height: 100vh;">
     <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
       <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         <span class="fs-4">Кабинет сотрудника</span>
@@ -130,9 +130,9 @@
           data-bs-toggle="dropdown" aria-expanded="false">
           <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
           <strong>
-              {% if not current_user.is_anonymous %}
-                {{current_user.fullname}}
-              {% endif %}
+            {% if not current_user.is_anonymous %}
+            {{current_user.fullname}}
+            {% endif %}
           </strong>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
@@ -143,11 +143,10 @@
         </ul>
       </div>
     </div>
-
-  {% block content %}{% endblock content %}
-    <div class="b-example-vr"></div>
+    <div class="container">
+      {% block content %}{% endblock content %}
+    </div>
   </main>
-
 
   {% include '_messages.html' %}
   <script src="{{url_for('static', filename='bootstrap.bundle.min.js')}}"></script>
