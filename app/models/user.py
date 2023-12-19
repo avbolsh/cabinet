@@ -11,6 +11,7 @@ def uuid_to_str():
 
 class User(UserMixin, db.Model):
     id = Column(String(36), primary_key=True, default=uuid_to_str)
+    username = Column(String(50), unique=True)
     snils = Column(String(14), index=True, unique=True)
     email = Column(String(120), index=True, unique=True)
     password_hash = Column(String(128))
@@ -28,6 +29,13 @@ class User(UserMixin, db.Model):
     
     def __repr__(self):
         return f"<User {self.fullname}>"
+
+    def from_dict(self, data, new_user=False):
+        for field in ["username", "snils", "id", "fullname"]:
+            if field in data:
+                setattr(self, field, data[field])
+        if new_user and "password" in data:
+            self.set_password(data["password"])
 
 
 @login.user_loader
