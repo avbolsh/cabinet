@@ -4,6 +4,14 @@ from config import Config
 from app.extensions import db, migrate, login, admin
 from app.models.user import User
 from app.models.ticket import Ticket
+from flask_admin.contrib.sqla import ModelView
+
+class CustomModelView(ModelView):
+    column_display_pk = True
+    column_display_all_relations = True
+    column_auto_select_related = True
+    column_searchable_list = ('id',)
+
 
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -15,6 +23,8 @@ def create_app(config_class=Config):
     login.init_app(app)
 
     admin.init_app(app)
+    admin.add_view(CustomModelView(User, db.session))
+    admin.add_view(CustomModelView(Ticket, db.session))
 
     # Регистрируем блюпринты
     from app.main import bp as main_bp
