@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired
 
 
 class LoginForm(FlaskForm):
-    snils = StringField("Страховой номер ПФР", validators=[DataRequired(message="Это поле обязательно для заполнения")])
+    username = StringField("Логин", validators=[DataRequired(message="Это поле обязательно для заполнения")])
     password = PasswordField("Пароль", validators=[DataRequired(message="Это поле обязательно для заполнения")])
     remember_me = BooleanField("Запомнить меня")
     submit = SubmitField("Войти")

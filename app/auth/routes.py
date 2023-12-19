@@ -14,7 +14,7 @@ def login():
     form = LoginForm()
     
     if form.validate_on_submit():
-        user = User.query.filter_by(snils=form.snils.data).first()
+        user = User.query.filter_by(username=form.username.data).first()
         
         if user is None or not user.check_passwoord(form.password.data):
             flash("Неверные логин или пароль")
@@ -35,10 +35,3 @@ def logout():
 @login_namager.unauthorized_handler
 def unauthorized_callback():
     return redirect(url_for("auth.login"))
-
-
-@bp.route("/profile/<snils>")
-@login_required
-def user(snils):
-    user = User.query.filter_by(snils=snils).first_or_404()
-    return render_template("auth/profile.html", user=user)
