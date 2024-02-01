@@ -27,11 +27,12 @@
           <a class="nav-link" href="#">Отпуск</a>
         </li>
         
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('auth.logout')}}">Выйти</a>
+        </li>
+
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Найти</button>
-      </form>
+      
     </div>
   </div>
 </nav>

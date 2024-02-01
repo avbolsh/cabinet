@@ -7,7 +7,7 @@
     <title>{% block title %}{% endblock title %}</title>
 </head>
 <body>
-   {% include 'navbar.html' %}
+   {% block navbar %}{% endblock navbar %}
    {% block content %}{% endblock content %}
    <script src="{{ url_for('static', filename='bootstrap.bundle.js') }}"></script>
 </body>

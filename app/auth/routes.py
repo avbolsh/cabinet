@@ -1,5 +1,5 @@
 from flask import url_for, redirect, flash, request, render_template
-from flask_login import current_user, login_user, logout_user
+from flask_login import current_user, login_user, logout_user 
 from app.auth import bp
 from app.auth.forms import LoginForm
 from app.models.user import User
@@ -16,6 +16,7 @@ def login():
             flash("Неверные логин или пароль")
             return redirect(url_for("auth.login"))
         login_user(user, remember=form.remember_me.data)
+        return redirect(url_for("main.index"))
     return render_template('auth/login.html', title=('Sign In'), form=form)
 
 

@@ -14,7 +14,9 @@ def create_app(config_class=Config):
     db.init_app(app)
     migrate.init_app(app, db)
     admin.init_app(app)
-    login.init_app(app) 
+    login.init_app(app)
+
+    login.login_view = 'auth.login'
 
     admin.add_view(ModelView(User, db.session))
 
@@ -24,6 +26,7 @@ def create_app(config_class=Config):
     
     from app.auth import bp as auth_bp
     app.register_blueprint(auth_bp, url_prefix="/auth")
+
 
     @app.route('/test/')
     def test_page():
