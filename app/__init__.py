@@ -17,6 +17,7 @@ def create_app(config_class=Config):
     login.init_app(app)
 
     login.login_view = 'auth.login'
+    login.login_message = "Введите ваши логин и пароль"
 
     admin.add_view(ModelView(User, db.session))
 
