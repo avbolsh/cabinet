@@ -10,33 +10,24 @@ parser.add_argument("username", type=str)
 parser.add_argument("email", type=str)
 parser.add_argument("id", type=str)
 parser.add_argument("password", type=str)
+parser.add_argument("full_name", type=str)
 
 class UserResource(Resource):
 
-    def get(self, id=None, page=1):
+    def get(self, id):
         
-        if not id:
-            users = User.query.paginate(page=page, per_page=10).items
-        else:
-            users = User.query.get(id)
+        user = User.query.get(id)
         
-        if not users:
+        if not user:
             abort(404)
         
-        res = {}
-
-        for user in users:
-            res[user.id] = {
-                "username": user.username,
-                "email": user.email
-            } 
-
-        return jsonify(res)  
+        return jsonify({"id": user.id, "username": user.username, "email": user.email, "full_name": user.full_name})
 
     def post(self):
         args = parser.parse_args()
 
         username = args["username"]
+        full_name = args["full_name"]
         email = args["email"]
         password = args["password"]
         id = args["id"]
@@ -54,11 +45,7 @@ class UserResource(Resource):
             "username": new_user.username,
             "email": new_user.email
         }
-
         return jsonify(res)
-
-        pass
-
 
 rest_api.add_resource(
     UserResource,

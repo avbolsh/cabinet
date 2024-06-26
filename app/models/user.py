@@ -11,6 +11,7 @@ class User(UserMixin, db.Model):
     username = Column(String(100), unique=True, index=True)
     email = Column(String(100), unique=True, index=True)
     password_hash = Column(String(256))
+    full_name = Column(String(100))
 
     def set_password(self, passwod):
         self.password_hash = generate_password_hash(passwod)
