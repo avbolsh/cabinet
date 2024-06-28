@@ -60,6 +60,18 @@ class UserResource(Resource):
         }
         return jsonify(res)
 
+    def delete(self, id):
+        user = User.query.get(id)
+    
+        if not user:
+            abort(404)
+
+        db.session.delete(user)
+        db.session.commit()
+
+        return json.dumps({"respomse": "deleted"})
+
+
 rest_api.add_resource(
     UserResource,
     "/users/", 
