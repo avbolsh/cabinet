@@ -71,6 +71,36 @@ class UserResource(Resource):
 
         return json.dumps({"respomse": "deleted"})
 
+    def put(self, id):
+        args = parser.parse_args()
+        username = args["username"]
+        full_name  = args["full_name"]
+        email  = args["email"]
+        password   = args["password"]
+
+        user = User.query.get_or_404(id)
+
+        if username is not None:
+            user.username = username
+        if email is not None:
+            user.email = email
+        if password is not None:
+            user.set_password(password)
+
+        db.session.add(user)
+        
+        try:
+            db.session.commit()
+        except:
+            return abort(400, "Bad request")
+
+        res = {}
+        res[user.id] = {
+            "username": user.username,
+            "email": user.email
+        }
+        return jsonify(res)
+
 
 rest_api.add_resource(
     UserResource,
