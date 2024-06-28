@@ -3,6 +3,7 @@ from flask_restful import Resource, reqparse
 from .import rest_api
 from app.models import User
 from app.extensions import db
+import json
 
 parser = reqparse.RequestParser()
 
@@ -14,14 +15,26 @@ parser.add_argument("full_name", type=str)
 
 class UserResource(Resource):
 
-    def get(self, id):
+    def get(self, id=None, page=1):
         
-        user = User.query.get(id)
+        if not id:
+            users = User.query.paginate(page=page, per_page=10).items
+        else:
+            users = User.query.get(id)
         
-        if not user:
+        if not users:
             abort(404)
         
-        return jsonify({"id": user.id, "username": user.username, "email": user.email, "full_name": user.full_name})
+        res = {}
+
+        for user in users:
+            res[user.id] = {
+                "username": user.username,
+                "email": user.email, 
+                "full_name": user.full_name
+            }
+        
+        return json.dumps(res, ensure_ascii=False) 
 
     def post(self):
         args = parser.parse_args()
