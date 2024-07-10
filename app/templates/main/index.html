@@ -6,10 +6,48 @@
 
 {% block content %}
 
-<div class="container p-3">
-  <h3>Профиль</h3>
-  <p>Фамилия, имя, отчество: <strong>{{current_user.full_name}}</strong></p>  
-  <p>Должность: <strong>Ведущий программист 1С</strong></p>  
-</div>
+  <div class="container px-4 py-5">
+    <h2 class="pb-2 border-bottom">Профиль</h2>
+
+    <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
+      <div class="col d-flex flex-column align-items-start gap-2">
+        <h2 class="fw-bold text-body-emphasis">{{current_user.full_name}}</h2>
+        <p class="text-body-secondary">Старший инженер-программист, АСУП</p>
+        <a href="#" class="btn btn-primary btn-lg">Изменить мои данные</a>
+      </div>
+
+      <div class="col">
+        <div class="row row-cols-1 row-cols-sm-2 g-4">
+          <div class="col d-flex flex-column gap-2">
+            <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
+            </div>
+            <h4 class="fw-semibold mb-0 text-body-emphasis">ИНН</h4>
+            <p class="text-body-secondary">5050 123456 92</p>
+          </div>
+
+          <div class="col d-flex flex-column gap-2">
+            <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
+            </div>
+            <h4 class="fw-semibold mb-0 text-body-emphasis">СНИЛС</h4>
+            <p class="text-body-secondary">123-456-789-12</p>
+          </div>
+
+          <div class="col d-flex flex-column gap-2">
+            <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
+            </div>
+            <h4 class="fw-semibold mb-0 text-body-emphasis">Паспорт</h4>
+            <p class="text-body-secondary">2200 333333 Выдан ОВД Чужского района г. Москва 20 июля 2001 г.</p>
+          </div>
+
+          <div class="col d-flex flex-column gap-2">
+            <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
+            </div>
+            <h4 class="fw-semibold mb-0 text-body-emphasis">Дата рождения</h4>
+            <p class="text-body-secondary">23 декабря 1987 г.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 {% endblock content %}
