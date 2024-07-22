@@ -3,6 +3,7 @@ from app.hr_requests import bp
 from .forms import HrRequestForm
 from app.models.hr_request import Hr_Request
 from app import db
+from flask_login import current_user
 
 
 
@@ -16,7 +17,7 @@ def create():
         body = request.form['body'] 
 
         try:
-            hr_request = Hr_Request(title=title, body=body)
+            hr_request = Hr_Request(title=title, body=body, author=current_user)
             db.session.add(hr_request)
             db.session.commit()
         except:
@@ -29,12 +30,5 @@ def create():
 @bp.route("/")
 def index():
     
-    q = request.args.get("q")
-
-    if q:
-        hr_r = Hr_Request.query.filter(Hr_Request.title.contains(q) | 
-                                  Hr_Request.body.contains(q))
-    else:
-        hr_r = Hr_Request.query.order_by(Hr_Request.created.desc())
-    
+    hr_r = Hr_Request.query.filter_by(author=current_user).order_by(Hr_Request.created.desc())
     return render_template("hr_requests/index.html", hr_r=hr_r)

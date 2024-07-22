@@ -8,3 +8,4 @@ class Hr_Request(db.Model):
     title = Column(String(255))
     body = Column(Text)
     created = db.Column(DateTime, default=datetime.now())
+    user_id = Column(String(36), db.ForeignKey('user.id'))

@@ -12,6 +12,7 @@ class User(UserMixin, db.Model):
     email = Column(String(100), unique=True, index=True)
     password_hash = Column(String(256))
     full_name = Column(String(100))
+    hr_requests = db.relationship("Hr_Request", backref="author", lazy="dynamic")
 
     def set_password(self, passwod):
         self.password_hash = generate_password_hash(passwod)
