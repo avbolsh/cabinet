@@ -24,7 +24,10 @@ def create_app(config_class=Config):
     # Register blueprints here
     from app.main import bp as main_bp
     app.register_blueprint(main_bp)
-    
+
+    from app.hr_requests import bp as hr_requests_bp
+    app.register_blueprint(hr_requests_bp, url_prefix="/hr-requests")
+
     from app.auth import bp as auth_bp
     app.register_blueprint(auth_bp, url_prefix="/auth")
 
