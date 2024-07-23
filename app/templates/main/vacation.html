@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Отпуск{% endblock title %}
+
+{% block navbar %}{% include 'navbar.html' %}{% endblock navbar %}
+
+{% block content %}
+
+  <div class="container px-4 py-5">
+    <h2 class="pb-2 border-bottom">Отпуск</h2>
+
+    <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
+      <div class="col d-flex flex-column align-items-start gap-2">
+        <h2 class="fw-bold text-body-emphasis">Доступно {{day_of_vacation}} дней отпуска</h2>
+        <p class="text-body-secondary">На дату 23 июля 2024 г.</p>
+        <a href="#" class="btn btn-primary btn-lg">Подать заявление</a>
+      </div>
+
+      <div class="col">
+
+    <h3>Данные об отпусках</h3>
+        <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Дней</th>
+      <th scope="col">Начало</th>
+      <th scope="col">Окончания</th>
+      <th scope="col">Вид отуска</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>14 дней</td>
+      <td>13 мая 2024 г.</td>
+      <td>26 мая 2024 г.</td>
+      <td>Основной отуск</td>
+    </tr>
+    <tr>
+      <td>7 дней</td>
+      <td>11 марта 2024 г.</td>
+      <td>17 марта 2024 г.</td>
+      <td>Основной отуск</td>
+    </tr>
+    <tr>
+      <td>1 день</td>
+      <td>16 июня 2024 г.</td>
+      <td>16 июня 2024 г.</td>
+      <td>Административный отпуск</td>
+    </tr>
+  </tbody>
+</table>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
