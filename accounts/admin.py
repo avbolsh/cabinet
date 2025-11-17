@@ -5,9 +5,9 @@ from .models import Employee
 @admin.register(Employee)
 class EmployeeAdmin(UserAdmin):
      fieldsets = (
-        (None, {'fields': ('username', 'password')}),
+        (None, {'fields': ('username', 'password', 'uid')}),
         ('Персональная информация', {'fields': ('first_name', 'last_name', 'middle_name', 'email')}),
         ('Разрешения', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         ('Важные даты', {'fields': ('last_login', 'date_joined')}),
-        ('Работа', {'fields': ('uid', 'position', 'department')}),
+        ('Работа', {'fields': ('position', 'department')}),
     )
