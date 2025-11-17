@@ -10,3 +10,7 @@ class Employee(AbstractUser):
     position = models.CharField("Должность", max_length=255, blank=True)
     department = models.CharField("Подразделение", max_length=255, blank=True)
 
+    class Meta:
+        verbose_name = "Сотрудник"
+        verbose_name_plural = "Сотрудники"
+
