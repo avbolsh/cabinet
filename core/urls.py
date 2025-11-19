@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from accounts.views import HomePageView
 
 admin.site.site_header = 'Панель администратора | Кабинет сотрудника'
 admin.site.site_title = 'Панель администратор | Кабинет сотрудника'
@@ -23,4 +24,5 @@ admin.site.site_title = 'Панель администратор | Кабине�
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
+    path('', HomePageView.as_view(), name="home"),
 ]
