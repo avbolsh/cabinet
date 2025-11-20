@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Вход в систему{% endblock %}
+
+{% block content %}
+<h2>Вход в личный кабинет</h2>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Войти</button>
+</form>
+
+{% if form.errors %}
+<p>Ошибка ввода логина или пароля</p>
+{% endif %}
+{% endblock %}
